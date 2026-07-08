@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #899898;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-header h4 {
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .btn-back {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .btn-back:hover { color: #f1f5f9; }
+
+        .form-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 32px 36px;
+            max-width: 680px;
+            width: 100%;
+            margin: 35px auto;
+        }
+
+        .form-card h5 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+        }
+
+        .form-card p {
+            font-size: 0.83rem;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin: 18px 0 12px;
+        }
+
+        .form-label {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 9px 13px;
+            font-size: 0.88rem;
+            color: #1e293b;
+            transition: border 0.2s;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #1e293b;
+            box-shadow: 0 0 0 3px rgba(30,41,59,0.08);
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #f1f5f9;
+            margin: 18px 0;
+        }
+
+        .btn-submit {
+            background: #1e293b;
+            color: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 28px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #334155;
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <h4><i class="fas fa-graduation-cap me-2"></i>Student Management</h4>
+        <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+
+    <div class="form-card">
+        <h5>Add New Student</h5>
+        <p>Fill in the information below to register a new student.</p>
+
+        <form class="row g-3" action="/add" method="post">
+
+            <div class="section-title">Personal Info</div>
+
+            <div class="col-md-7">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g. Rahul Sharma">
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">Age</label>
+                <input type="number" name="age" class="form-control" placeholder="e.g. 16">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Class</label>
+                <input type="text" name="class" class="form-control" placeholder="e.g. 10th B">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Joining Date</label>
+                <input type="date" name="date" class="form-control">
+            </div>
+
+            <hr class="divider col-12">
+            <div class="section-title col-12">Academic Info</div>
+
+            <div class="col-md-4">
+                <label class="form-label">Status</label>
+                <select name="isPresent" class="form-select">
+                    <option value="true">Present</option>
+                    <option value="false">Absent</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Percentage</label>
+                <input type="number" name="percentage" class="form-control" placeholder="e.g. 85">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Grade</label>
+                <input type="text" name="grade" class="form-control" placeholder="e.g. A+">
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn-submit">Add Student</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

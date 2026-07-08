@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background: #899898;
+            font-family: 'Segoe UI', sans-serif;
+            color: #2c2c2c;
+        }
+
+        /* Header */
+        .top-header {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-header h4 {
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .top-header span {
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 22px 0 16px;
+        }
+
+        .btn-add {
+            background: #1e293b;
+            color: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #334155;
+            color: #f1f5f9;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-filter {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 7px 16px;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: #475569;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-filter:hover {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #1e293b;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px 22px;
+            min-width: 130px;
+            flex: 1;
+        }
+
+        .stat-box .stat-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1;
+        }
+
+        .stat-box .stat-label {
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .stat-box.present .stat-num { color: #059669; }
+        .stat-box.absent .stat-num  { color: #e11d48; }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .student-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: box-shadow 0.2s;
+        }
+
+        .student-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+        }
+
+        /* Card Top Row */
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .student-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #e8edf2;
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .status-dot.present {
+            background: #ecfdf5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status-dot.absent {
+            background: #fff1f2;
+            color: #e11d48;
+            border: 1px solid #fda4af;
+        }
+
+        /* Card Info */
+        .student-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 10px;
+            margin-bottom: 14px;
+        }
+
+        .info-item {
+            font-size: 0.78rem;
+            color: #94a3b8;
+        }
+
+        .info-item span {
+            display: block;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        /* Divider */
+        .card-divider {
+            border: none;
+            border-top: 1px solid #f1f5f9;
+            margin: 12px 0;
+        }
+
+        /* Card Actions */
+        .card-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .btn-card {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            padding: 7px 0;
+            border-radius: 7px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .btn-card:hover {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #1e293b;
+        }
+
+        .btn-card.danger:hover {
+            background: #e11d48;
+            border-color: #e11d48;
+            color: #fff;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 30px 0 15px;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header -->
+    <div class="top-header">
+        <h4><i class="fas fa-graduation-cap me-2"></i>Student Management</h4>
+        <span>Dashboard</span>
+    </div>
+
+    <div class="container-fluid px-4">
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <a href="/add" class="btn-add">
+                <i class="fas fa-plus"></i> Add Student
+            </a>
+            <div class="filter-group">
+                <a href="/" class="btn-filter">All</a>
+                <a href="/?filter=present" class="btn-filter">Present</a>
+                <a href="/?filter=absent" class="btn-filter">Absent</a>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-num"><%= students.length %></div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-box present">
+                <div class="stat-num"><%= students.filter(s => s.isPresent).length %></div>
+                <div class="stat-label">Present</div>
+            </div>
+            <div class="stat-box absent">
+                <div class="stat-num"><%= students.filter(s => !s.isPresent).length %></div>
+                <div class="stat-label">Absent</div>
+            </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="cards-grid">
+            <% students.forEach((std) => { %>
+                <div class="student-card">
+
+                    <!-- Top Row -->
+                    <div class="card-top">
+                        <div class="student-avatar">
+                            <%= std.name.charAt(0).toUpperCase() %>
+                        </div>
+                        <% if(std.isPresent){ %>
+                            <span class="status-dot present">● Present</span>
+                        <% } else { %>
+                            <span class="status-dot absent">● Absent</span>
+                        <% } %>
+                    </div>
+
+                    <!-- Name -->
+                    <div class="student-name"><%= std.name %></div>
+
+                    <!-- Info Grid -->
+                    <div class="info-grid">
+                        <div class="info-item">
+                            Age <span><%= std.age %></span>
+                        </div>
+                        <div class="info-item">
+                            Class <span><%= std.class %></span>
+                        </div>
+                        <div class="info-item">
+                            Percentage <span><%= std.percentage %>%</span>
+                        </div>
+                        <div class="info-item">
+                            Grade <span><%= std.grade %></span>
+                        </div>
+                        <div class="info-item">
+                            Joined <span><%= std.joiningDate %></span>
+                        </div>
+                    </div>
+
+                    <hr class="card-divider">
+
+                    <!-- Actions -->
+                    <div class="card-actions">
+                        <a href="/toggle/<%= std._id %>" class="btn-card">Toggle</a>
+                        <a href="/edit/<%= std._id %>" class="btn-card">Edit</a>
+                        <a href="/delete/<%= std._id %>" class="btn-card danger">Delete</a>
+                    </div>
+
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+</body>
+</html>
